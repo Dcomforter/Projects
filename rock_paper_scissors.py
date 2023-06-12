@@ -78,7 +78,7 @@ while response != 'no':
             print("Thanks for playing!!!\n")
             break
 
-# Returns the count of individual wins
+# Returns the count of individual wins based on the games played
 print(f"Overall wins for {player_name} =>", player_win_count)
 print("Overall wins for Computer =>", computer_win_count, "\n")
 
