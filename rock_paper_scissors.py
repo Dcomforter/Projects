@@ -1,17 +1,19 @@
+# Random helps to generate numbers or characters randomly
 import random
 
 player_win_count = 0
 computer_win_count = 0
-player_name = ''
+player_name = '' 
 
+# This function gets the choice from the player and computer calls on is_win to determine who wins
 # TODO: Implement this function to account for wrong choices.
 def play():
     player_name
-    player = ''
+    player = '' # This initializes the player's choice, and helps to get out of the while loop below
 
     while player not in ['r', 'p', 's']:
         player = input("What's your choice? 'r' for rock, 'p' for paper, 's' for scissors: ")
-        computer = random.choice(['r', 'p', 's'])
+        computer = random.choice(['r', 'p', 's']) # The computer to chooses from the list
         
         if player not in ['r', 'p', 's']:
             print("Please type a choice only between 'r', 's', or 'p'. Try again\n")
@@ -19,31 +21,36 @@ def play():
     global player_win_count
     global computer_win_count
 
+    # Declares the game as a tie
     if player == computer:
         print(f'{player_name} chose \'{player}\' and Computer chose \'{computer}\'.')
-        return 'It\'s a tie!!!\n'
+        return "It's a tie!!!\n"
 
-# In this game, r > s, s > p, p > r
+    # Declares the player as the winner
     if is_win(player, computer):
         print(f'{player_name} chose \'{player}\' and Computer chose \'{computer}\'.')
         player_win_count += 1
         return f'{player_name} won!!!\n'
 
+    # Declares the computer as the winner
     print(f'{player_name} chose \'{player}\' and Computer chose \'{computer}\'.')
     computer_win_count += 1
     return 'Computer won!!!\n'
 
+# This function declares the player the winner based on the rules of the game
+# In this game, r > s, s > p, p > r
 def is_win(player, computer):
     # return true if player wins
     if (player == 'r' and computer == 's') or (player == 's' and computer == 'p') \
         or (player == 'p' and computer == 'r'):
         return True
 
+# This is the main, the game starts from here
 print('\nWelcome to Game 1 --> Rock, Paper and Scissors.\n')
 player_name = input("What is your name?: ")
 print()
-response = ''
-counter = 0
+response = '' # This helps to get of the while loop below
+counter = 0 # Helps to get out of the inner while loop below
 
 # TODO: Implement this function to count the number of individual wins and print out the overall winner
 while response != 'no':
@@ -67,9 +74,11 @@ while response != 'no':
             print("Thanks for playing!!!\n")
             break
 
+# Returns the count of individual wins
 print(f"Overall wins for {player_name} =>", player_win_count)
 print("Overall wins for Computer =>", computer_win_count, "\n")
 
+# Determines the overall winner based on the count of individual wins
 if player_win_count > computer_win_count:
     print(f"{player_name} is the overall winner with {player_win_count} game win(s).\n")
 elif player_win_count < computer_win_count:
