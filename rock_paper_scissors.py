@@ -53,16 +53,20 @@ response = '' # This helps to get of the while loop below
 counter = 0 # Helps to get out of the inner while loop below
 
 # TODO: Implement this function to count the number of individual wins and print out the overall winner
+# Determines how many times the game is played based on response or count
 while response != 'no':
-    counter = counter + 1
+    counter += 1
     print("GAME NUMBER", counter, "\n")
     print(play())
 
-    if counter >= 5:
+    # The loop ends once counter is greater than or equal to the set number
+    if counter >= 7:
         print('Thanks for playing!!!\n')
         break
 
-    while counter < 5:
+    # Keeps asking the question while counter is less than the set number
+    # Also keeps track of wrong and right choices   
+    while counter < 7:
         response = input('Do you want to play again? Type yes or no: ').lower()
         print()
         if response == 'yes':
@@ -80,10 +84,10 @@ print("Overall wins for Computer =>", computer_win_count, "\n")
 
 # Determines the overall winner based on the count of individual wins
 if player_win_count > computer_win_count:
-    print(f"{player_name} is the overall winner with {player_win_count} game win(s).\n")
+    print(f"{player_name} is the overall winner with {player_win_count} game win(s) out of {counter} games.\n")
 elif player_win_count < computer_win_count:
-    print(f"Computer is the overall winner with {computer_win_count} game win(s).\n")
+    print(f"Computer is the overall winner with {computer_win_count} game win(s) out of {counter} games.\n")
 else:
-    print("The game was a tie overall\n")
+    print(f"The game was a tie overall, out of {counter} games\n")
 
 print("G A M E O V E R ! ! !\n")
