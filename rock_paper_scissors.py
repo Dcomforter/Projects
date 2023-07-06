@@ -39,7 +39,7 @@ def is_win(player, computer):
         or (player == 'p' and computer == 'r'):
         return True
 
-print('\nWelcome to Game 1 --> Rock, Paper and Scissors.\n')
+print('\nWelcome to The First Game --> Rock, Paper and Scissors.\n')
 player_name = input("What is your name?: ")
 print()
 response = ''
@@ -77,4 +77,4 @@ elif player_win_count < computer_win_count:
 else:
     print("The game was a tie overall\n")
 
-print("G A M E O V E R ! ! !\n")
+print("! ! ! G A M E O V E R ! ! !\n")
