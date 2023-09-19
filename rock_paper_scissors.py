@@ -6,17 +6,16 @@ computer_win_count = 0
 ties_count = 0
 player_name = '' 
 
-# This function gets the choice from the player and computer calls on is_win to determine who wins
-# TODO: Implement this function to account for wrong choices.
+# This function gets the choice from the player and computer, then calls on is_win() to determine who wins.
 def play():
     player_name
-    player = '' # This initializes the player's choice, and helps to get out of the while loop below
+    players_choice = '' # This initializes the player's choice, and helps to get out of the while loop below.
 
-    while player not in ['r', 'p', 's']:
-        player = input("What's your choice? 'r' for rock, 'p' for paper, 's' for scissors: ")
-        computer = random.choice(['r', 'p', 's']) # The computer randomly selects a character from the list.
+    while players_choice not in ['r', 'p', 's']:
+        players_choice = input("What's your choice? 'r' for rock, 'p' for paper, 's' for scissors: ")
+        computers_choice = random.choice(['r', 'p', 's']) # The computer randomly selects a character from the list.
         
-        if player not in ['r', 'p', 's']:
+        if players_choice not in ['r', 'p', 's']:
             print("Please type a choice only between 'r', 's', or 'p'. Try again\n")
 
     global player_win_count
@@ -24,28 +23,28 @@ def play():
     global ties_count
 
     # Declares the game as a tie
-    if player == computer:
-        print(f'{player_name} chose \'{player}\' and Computer chose \'{computer}\'.')
+    if players_choice == computers_choice:
+        print(f'{player_name} chose \'{players_choice}\' and Computer chose \'{computers_choice}\'.')
         ties_count += 1
         return "It's a tie!!!\n"
 
     # Declares the player as the winner
-    if is_win(player, computer):
-        print(f'{player_name} chose \'{player}\' and Computer chose \'{computer}\'.')
+    if is_win(players_choice, computers_choice):
+        print(f'{player_name} chose \'{players_choice}\' and Computer chose \'{computers_choice}\'.')
         player_win_count += 1
         return f'{player_name} won!!!\n'
 
     # Declares the computer as the winner
-    print(f'{player_name} chose \'{player}\' and Computer chose \'{computer}\'.')
+    print(f'{player_name} chose \'{players_choice}\' and Computer chose \'{computers_choice}\'.')
     computer_win_count += 1
     return 'Computer won!!!\n'
 
 # This function declares the player the winner based on the rules of the game
 # In this game, r > s, s > p, p > r
-def is_win(player, computer):
+def is_win(players_choice, computers_choice):
     # return true if player wins
-    if (player == 'r' and computer == 's') or (player == 's' and computer == 'p') \
-        or (player == 'p' and computer == 'r'):
+    if (players_choice == 'r' and computers_choice == 's') or (players_choice == 's' and computers_choice == 'p') \
+        or (players_choice == 'p' and computers_choice == 'r'):
         return True
 
 # The program starts from here
