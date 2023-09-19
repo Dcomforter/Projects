@@ -84,7 +84,7 @@ while response != 'no':
 # Returns the count of individual wins based on the games played
 print(f"Overall wins for {player_name} =>", player_win_count)
 print("Overall wins for Computer =>", computer_win_count)
-print("Overall ties =>", ties_count, "\n")
+print("Overall ties for both players =>", ties_count, "\n")
 
 # Determines the overall winner based on the count of individual wins
 if player_win_count > computer_win_count:
