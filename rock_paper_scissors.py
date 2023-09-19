@@ -3,6 +3,7 @@ import random
 
 player_win_count = 0
 computer_win_count = 0
+ties_count = 0
 player_name = '' 
 
 # This function gets the choice from the player and computer calls on is_win to determine who wins
@@ -20,10 +21,12 @@ def play():
 
     global player_win_count
     global computer_win_count
+    global ties_count
 
     # Declares the game as a tie
     if player == computer:
         print(f'{player_name} chose \'{player}\' and Computer chose \'{computer}\'.')
+        ties_count += 1
         return "It's a tie!!!\n"
 
     # Declares the player as the winner
@@ -80,6 +83,7 @@ while response != 'no':
 # Returns the count of individual wins based on the games played
 print(f"Overall wins for {player_name} =>", player_win_count)
 print("Overall wins for Computer =>", computer_win_count, "\n")
+print("Overall ties =>", ties_count, "\n")
 
 # Determines the overall winner based on the count of individual wins
 if player_win_count > computer_win_count:
