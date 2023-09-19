@@ -1,4 +1,4 @@
-# Random helps to generate numbers or characters randomly
+# Random helps to generate numbers or characters randomly from a range or list.
 import random
 
 player_win_count = 0
@@ -14,7 +14,7 @@ def play():
 
     while player not in ['r', 'p', 's']:
         player = input("What's your choice? 'r' for rock, 'p' for paper, 's' for scissors: ")
-        computer = random.choice(['r', 'p', 's']) # The computer to chooses from the list
+        computer = random.choice(['r', 'p', 's']) # The computer randomly selects a character from the list.
         
         if player not in ['r', 'p', 's']:
             print("Please type a choice only between 'r', 's', or 'p'. Try again\n")
@@ -48,6 +48,7 @@ def is_win(player, computer):
         or (player == 'p' and computer == 'r'):
         return True
 
+# The program starts from here
 print('\nWelcome to The First Game --> Rock, Paper and Scissors.\n')
 player_name = input("What is your name?: ")
 print()
