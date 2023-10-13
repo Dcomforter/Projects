@@ -11,7 +11,7 @@ data.isnull().sum()
 data.isnull().sum()/data.shape[0]*100
 data.nunique()
 
-sns.distplot(data["Purchase"],color='r')
+sns.displot(data["Purchase"],color='r')
 plt.title("Purchase Distribution")
 plt.show()
 
@@ -26,9 +26,12 @@ sns.countplot(data['Gender'])
 plt.show()
 
 data['Gender'].value_counts(normalize=True)*100
-data.groupby("Gender").mean()["Purchase"]
+data.groupby("Gender").mean(numeric_only=True)["Purchase"]
 
-sns.countplot(data['Marital_Status'])
+plt.hist(data['Marital_Status'], bins=10, color='skyblue', edgecolor='black', alpha=0.7)
+plt.title('Marital Status Distribution')
+plt.xlabel('Marital Status')
+plt.ylabel('Frequency')
 plt.show()
 
 data.groupby("Marital_Status").mean()["Purchase"]
@@ -37,8 +40,11 @@ data.groupby("Marital_Status").mean()["Purchase"].plot(kind='bar')
 plt.title("Marital_Status and Purchase Analysis")
 plt.show()
 
-plt.figure(figsize=(18,5))
-sns.countplot(data['Occupation'])
+occupation_counts = data['Occupation'].value_counts()
+plt.bar(occupation_counts.index, occupation_counts.values, color='skyblue', edgecolor='black')
+plt.title('Occupation Distribution')
+plt.xlabel('Occupation')
+plt.ylabel('Frequency')
 plt.show()
 
 occup = pd.DataFrame(data.groupby("Occupation").mean()["Purchase"])
@@ -73,8 +79,11 @@ data.groupby("Age").sum()['Purchase'].plot(kind="bar")
 plt.title("Age and Purchase Analysis")
 plt.show()
 
-plt.figure(figsize=(18,5))
-sns.countplot(data['Product_Category_1'])
+product_category_1_counts = data['Product_Category_1'].value_counts()
+plt.bar(product_category_1_counts.index, product_category_1_counts.values, color='skyblue', edgecolor='black')
+plt.title('Product Category 1 Distribution')
+plt.xlabel('Product Category 1')
+plt.ylabel('Frequency')
 plt.show()
 
 data.groupby('Product_Category_1').mean()['Purchase'].plot(kind='bar',figsize=(18,5))
@@ -85,12 +94,18 @@ data.groupby('Product_Category_1').sum()['Purchase'].plot(kind='bar',figsize=(18
 plt.title("Product_Category_1 and Purchase Analysis")
 plt.show()
 
-plt.figure(figsize=(18,5))
-sns.countplot(data['Product_Category_2'])
+product_category_2_counts = data['Product_Category_2'].value_counts()
+plt.bar(product_category_2_counts.index, product_category_2_counts.values, color='green', edgecolor='black')
+plt.title('Product Category 2 Distribution')
+plt.xlabel('Product Category 2')
+plt.ylabel('Frequency')
 plt.show()
 
-plt.figure(figsize=(18,5))
-sns.countplot(data['Product_Category_3'])
+product_category_3_counts = data['Product_Category_3'].value_counts()
+plt.bar(product_category_3_counts.index, product_category_3_counts.values, color='blue', edgecolor='black')
+plt.title('Product Category 3 Distribution')
+plt.xlabel('Product Category 3')
+plt.ylabel('Frequency')
 plt.show()
 
 data.corr()
