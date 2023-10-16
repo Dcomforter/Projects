@@ -170,9 +170,8 @@ mean_absolute_error(y_test, dt_y_pred)
 mean_squared_error(y_test, dt_y_pred)
 r2_score(y_test, dt_y_pred)
 
-
 from math import sqrt
-print("RMSE of Linear Regression Model is ",sqrt(mean_squared_error(y_test, dt_y_pred)))
+print("RMSE of Decision Trees Regression Model is ",sqrt(mean_squared_error(y_test, dt_y_pred)))
 
 from sklearn.ensemble import RandomForestRegressor
 
@@ -190,5 +189,16 @@ mean_squared_error(y_test, rf_y_pred)
 r2_score(y_test, rf_y_pred)
 
 from math import sqrt
-print("RMSE of Linear Regression Model is ",sqrt(mean_squared_error(y_test, rf_y_pred)))
+print("RMSE of Random Forest Regression Model is ",sqrt(mean_squared_error(y_test, rf_y_pred)))
 
+from xgboost.sklearn import XGBRegressor
+xbg_reg = XGBRegressor(learning_rate=1.0, max_depth=6, min_child_weight=40, seed=0)
+
+xgb_reg.fit(X_train, y_train)
+xgb_y_pred = xgb_reg.predict(X_test)
+mean_absolute_error(y_test, xgb_y_pred)
+mean_squared_error(y_test, xgb_y_pred)
+r2_score(y_test, xgb_y_pred)
+
+from math import sqrt
+print("RMSE of XGBoost Regression Model is ", sqrt(mean_squared_error(y_test, xgb_y_pred)))
