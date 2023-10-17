@@ -183,12 +183,14 @@ class BlackFridaySalesAnalysis:
         self.X_train, self.X_test, self.y_train, self.y_test = train_test_split(self.X, self.y, test_size=0.3,
                                                                                 random_state=123)
 
+    # Trains Linear Regression Model
     def train_linear_regression(self):
         # Add code for training linear regression model here
-        lr = LinearRegression()
-        lr.fit(self.X_train, self.y_train)
-        return lr
+        Lregressor = LinearRegression()
+        Lregressor.fit(self.X_train, self.y_train)
+        return Lregressor
 
+    # Evaluates Linear Regression Model
     def evaluate_linear_regression_model(self, model, X_test, y_test):
         # Add code for evaluating linear regression model here
         y_pred = model.predict(X_test)
@@ -198,13 +200,13 @@ class BlackFridaySalesAnalysis:
         r2 = r2_score(y_test, y_pred)
         return {'MAE': mae, 'MSE': mse, 'RMSE': rmse, 'R-squared': r2}
 
-    # Similar functions for other regression models (Decision Tree, Random Forest, XGBoost)
-
+    # Trains Decision Tree Regression Model
     def train_decision_tree_regression(self):
-        dt = DecisionTreeRegressor(random_state = 0)
-        dt.fit(self.X_train, self.y_train)
-        return dt
+        DTregressor = DecisionTreeRegressor(random_state = 0)
+        DTregressor.fit(self.X_train, self.y_train)
+        return DTregressor
 
+    # Evaluates Decision Tree Regression Model
     def evaluate_decision_tree_regression_model(self, model, X_test, y_test):
         y_pred = model.predict(X_test)
         mae = mean_absolute_error(y_test, y_pred)
@@ -213,11 +215,13 @@ class BlackFridaySalesAnalysis:
         r2 = r2_score(y_test, y_pred)
         return {'MAE': mae, 'MSE': mse, 'RMSE': rmse, 'R-squared': r2}
 
+    # Trains Random Forest Regression Model
     def train_random_forest_regression(self):
         RFregressor = RandomForestRegressor(random_state = 0)
         RFregressor.fit(self.X_train, self.y_train)
         return RFregressor
 
+    # Evaluates Random Forest Regression Model
     def evaluate_random_forest_regression_model(self, model, X_test, y_test):
         y_pred = model.predict(X_test)
         mae = mean_absolute_error(y_test, y_pred)
@@ -226,11 +230,13 @@ class BlackFridaySalesAnalysis:
         r2 = r2_score(y_test, y_pred)
         return {'MAE': mae, 'MSE': mse, 'RMSE': rmse, 'R-squared': r2}
 
+    # Trains XGBoost Regression Model
     def train_XGBoost_regression(self):
         XGBregressor = XGBRegressor(learning_rate=1.0, max_depth=6, min_child_weight=40, seed=0)
         XGBregressor.fit(self.X_train, self.y_train)
         return XGBregressor
 
+    # Evaluates XGBoost Regression Model
     def evaluate_XGBoost_regression_model(self, model, X_test, y_test):
         y_pred = model.predict(X_test)
         mae = mean_absolute_error(y_test, y_pred)
@@ -243,13 +249,13 @@ def main():
     data_file = "customer.csv"
     analysis = BlackFridaySalesAnalysis(data_file)
 
-    #analysis.display_basic_info()
+    analysis.display_basic_info()
     analysis.visualize_purchase_distribution()
     analysis.visualize_purchase_boxplot()
     analysis.visualize_gender_distribution()
-    #analysis.visualize_marital_status()
+    analysis.visualize_marital_status()
     analysis.visualize_marital_and_purchase()
-    #analysis.visualize_occupation_distribution()
+    analysis.visualize_occupation_distribution()
     analysis.visualize_occupation_purchase()
     analysis.visualize_city_category()
     analysis.visualize_city_and_purchase()
@@ -257,9 +263,9 @@ def main():
     analysis.visualize_stay_in_and_purchase()
     analysis.visualize_age_distribution()
     analysis.visualize_age_and_purchase()
-    #analysis.visualize_product_one_analysis()
-    #analysis.visualize_product_two_analysis()
-    #analysis.visualize_product_three_analysis()
+    analysis.visualize_product_one_analysis()
+    analysis.visualize_product_two_analysis()
+    analysis.visualize_product_three_analysis()
     analysis.visualize_heatmap()
 
     # Add more analysis and modeling steps as needed
@@ -275,20 +281,26 @@ def main():
     print("Linear Regression Model Evaluation:")
     print(evaluation_metrics)
 
+    # Train a Decision Tree Regression model
     dt_model = analysis.train_decision_tree_regression()
 
+    # Evaluate the model
     dt_evaluation_metrics = analysis.evaluate_decision_tree_regression_model(dt_model, analysis.X_test, analysis.y_test)
     print("Decision Tree Regression Model Evaluation:")
     print(dt_evaluation_metrics)
 
+    # Train a Random Forest Regression model
     rf_model = analysis.train_random_forest_regression()
 
+    # Evaluate the model
     rf_evaluation_metrics = analysis.evaluate_random_forest_regression_model(rf_model, analysis.X_test, analysis.y_test)
     print("Random Forest Regression Model Evaluation:")
     print(rf_evaluation_metrics)
 
+    # Train an XGBoost Regression model
     xgb_model = analysis.train_XGBoost_regression()
 
+    # Evaluate the model
     xgb_evaluation_metrics = analysis.evaluate_XGBoost_regression_model(xgb_model, analysis.X_test, analysis.y_test)
     print("XGBoost Regression Model Evaluation:")
     print(xgb_evaluation_metrics)
